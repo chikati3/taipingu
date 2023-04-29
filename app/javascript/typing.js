@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     XHR.onreadystatechange = function() {
       if(XHR.readyState === 4 && XHR.status === 200) {
         var score = 0
-        const data = JSON.parse(XHR.responseText)['games'];
+        var data = JSON.parse(XHR.responseText)['games'];
 
         // データなし、defaultData使用
         if (data.length == 0) {
