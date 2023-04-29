@@ -1,0 +1,31 @@
+<div class="contents">
+  <div class="container">
+    <h3>練習したい文字を入力してください</h3>
+    <%= form_with(model: @game, local: true) do |f| %>
+      <div class="from-group">
+        <p>タイトルを入力してください</p>
+        <%= f.text_field :title, class:"input-default", placeholder: "例 : やま", autocomplete: "off" %>
+      </div>
+      <div class="from-group">
+        <p>回答を入力してください。</p>
+        <%= f.text_field :answer, class:"input-default", placeholder: "例 : yama", autocomplete: "off" %>
+      </div>
+      <div class="submit-btn">
+        <%= f.submit "作成", class:"submit-btn" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="history-contents">
+    <p><%= @nickname %>さんの作成一覧</p>
+    <% @games.each do |game| %>
+      <div class="content-post" >
+        <div class="game-info">
+          <div class="game-title"><%= game.title %></div>
+          <div class="game-answer"><%= game.answer %></div>
+        </div>
+        <%= link_to '✖︎', game_path(game.id), class:"content-delete", method: :delete %>
+      </div>
+    <% end %>
+  </div>
+</div>

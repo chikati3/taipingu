@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>タイピングパラダイス</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all'  %>
+    <%= javascript_pack_tag 'application' %>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header-inner">
+        <%= link_to "タイピングパラダイス", root_path, class:"header-game-title"%>
+        <div class="header-link">
+          <div class="user-nav">
+            <% if user_signed_in? %>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              <%= link_to current_user.nickname, new_game_path %>
+            <% else %>
+              <%= link_to "ログイン", new_user_session_path %>
+              <%= link_to "新規登録", new_user_registration_path %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </header>
+    <hr>
+    <%= yield %>
+    <footer class="footer">
+      <div class="footer-inner">
+        <p>Version: 1.0.0</p>
+        <p>© 2023 タイピングパラダイス.</p>
+        <p>Developed by chikati. This website is provided as is and I assume no responsibility for any errors or omissions.</p>
+      </div>
+    </footer>
+  </body>
+</html>
